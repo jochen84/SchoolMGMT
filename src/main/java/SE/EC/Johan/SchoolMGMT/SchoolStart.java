@@ -38,6 +38,7 @@ public class SchoolStart {
                     break;
                 }
                 if (input == 3) {
+                    System.out.println();
                     addToCourse();
                     break;
                 }
@@ -83,23 +84,33 @@ public class SchoolStart {
 
         Student tempStudent = new Student(name,email,adress);
         studentList.saveStudent(tempStudent);
-
-        System.out.println(tempStudent.toString());
+        schoolStart();
     }
+
     public static void createCourse(){
         System.out.println("Enter course name: ");
-        scanner.nextLine();
         String courseName = scanner.nextLine();
         System.out.println("Enter start date (YYYY-MM-DD) ");
         LocalDate startDate = LocalDate.parse(scanner.nextLine());
         System.out.println("Enter number of weeks: ");
-        int duration = scanner.nextInt();
+        int duration = Integer.parseInt(scanner.nextLine());
 
         Course tempCourse = new Course(courseName,startDate,duration);
         courseList.saveCourse(tempCourse);
+        schoolStart();
     }
 
     public static void addToCourse(){
+        System.out.println("Available courses:");
+        for (Course course:courseList.findAll()){
+            System.out.println("Course ID: "+course.getCourseId() + " - " + course.getCourseName());
+        }
+        System.out.println("Enter the ID number of the desired course: ");
+        int courseInput = scanner.nextInt();
+        System.out.println("Enter the ID of the student: ");
+        int studentInput = scanner.nextInt();
+
+        courseList.findById(courseInput).addStudent(studentList.findById(studentInput));
     }
     public static void removeFromCourse(){
     }

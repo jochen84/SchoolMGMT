@@ -14,13 +14,18 @@ public class CourseDaoList implements CourseDao {
     public Course saveCourse(Course course) {
         if(!courseList.contains(course)){
             courseList.add(course);
-            System.out.println(course.getCourseName() + "was added.");
+            System.out.println(course.getCourseName() + " was added.");
         }
         return null;
     }
 
     @Override
     public Course findById(int id) {
+        for (Course course:courseList) {
+            if (course.getCourseId() == id){
+                return course;
+            }
+        }
         return null;
     }
 
@@ -36,7 +41,7 @@ public class CourseDaoList implements CourseDao {
 
     @Override
     public List<Course> findAll() {
-        return null;
+        return courseList;
     }
 
     @Override

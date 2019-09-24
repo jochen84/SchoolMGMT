@@ -31,6 +31,11 @@ public class StudentDaoList implements StudentDao {
 
     @Override
     public Student findById(int id) {
+        for (Student student:studentList) {
+            if(student.getStudentId() == id){
+                return student;
+            }
+        }
         return null;
     }
 
