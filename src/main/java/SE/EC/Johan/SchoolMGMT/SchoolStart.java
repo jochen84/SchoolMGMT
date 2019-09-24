@@ -10,12 +10,28 @@ import java.util.Scanner;
 
 public class SchoolStart {
 
+    public static Student temp1;
+    public static Student temp2;
+    public static Course temp3;
+    public static Course temp4;
+
     private static CourseDaoList courseList = new CourseDaoList();
     private static StudentDaoList studentList = new StudentDaoList();
 
     public static Scanner scanner = new Scanner(System.in);
 
     public static void schoolStart(){
+
+        temp1 = new Student("Johan Hansson", "simman@rocketmail.com", "Lingonstigen 1");
+        temp2 = new Student("Olle Berg","olle@gmail.com", "Bollibompavägen 3");
+        temp3 = new Course("Vetenskap", LocalDate.of(2020, 10, 10), 10);
+        temp4 = new Course("Matematik",  LocalDate.of(2019, 11, 15), 4);
+
+        studentList.saveStudent(temp1);
+        studentList.saveStudent(temp2);
+        courseList.saveCourse(temp3);
+        courseList.saveCourse(temp4);
+
         System.out.println("                  Welcome to Folsom High!");
         boolean runMeny = true;
         while (runMeny){
@@ -84,6 +100,7 @@ public class SchoolStart {
 
         Student tempStudent = new Student(name,email,adress);
         studentList.saveStudent(tempStudent);
+
         schoolStart();
     }
 
@@ -97,6 +114,7 @@ public class SchoolStart {
 
         Course tempCourse = new Course(courseName,startDate,duration);
         courseList.saveCourse(tempCourse);
+
         schoolStart();
     }
 
@@ -106,17 +124,54 @@ public class SchoolStart {
             System.out.println("Course ID: "+course.getCourseId() + " - " + course.getCourseName());
         }
         System.out.println("Enter the ID number of the desired course: ");
-        int courseInput = scanner.nextInt();
+        int courseInput = Integer.parseInt(scanner.nextLine());
         System.out.println("Enter the ID of the student: ");
-        int studentInput = scanner.nextInt();
-
+        int studentInput = Integer.parseInt(scanner.nextLine());
         courseList.findById(courseInput).addStudent(studentList.findById(studentInput));
+
+        schoolStart();
     }
     public static void removeFromCourse(){
+        System.out.println("Available courses:");
+        for (Course course:courseList.findAll()){
+            System.out.println("Course ID: "+course.getCourseId() + " - " + course.getCourseName());
+        }
+        System.out.println("Enter the ID number of the desired course: ");
+        int courseInput = Integer.parseInt(scanner.nextLine());
+        System.out.println("Students in " + courseList.findById(courseInput).getCourseName() + courseList.findById(courseInput).getStudentList().toString());
+        System.out.println("Enter the ID of the student to remove: ");
+        int studentInput = Integer.parseInt(scanner.nextLine());
+        courseList.findById(courseInput).removeStudent(studentList.findById(studentInput));
+
+        schoolStart();
+
     }
     public static void findStudent(){
     }
     public static void findCourse(){
+        System.out.println("Find course by:\n1. ID\n2. Name\n3. Startdate\n4. Show all courses");
+        int input = Integer.parseInt(scanner.nextLine());
+
+        if(input == 1) {
+            System.out.println("Enter course ID: ");
+            int idInput = Integer.parseInt(scanner.nextLine());
+            System.out.println(courseList.findById(idInput).toString());
+        }
+
+        if(input == 2) {
+            System.out.println("Enter course name: ");
+            String nameInput = scanner.nextLine();
+            System.out.println(courseList.findByName(nameInput).toString());
+        }
+        if (input == 3) {
+            System.out.println("Enter course startdate: (YYYY-MM-DD)");
+            LocalDate dateInput = LocalDate.parse(scanner.nextLine());
+            System.out.println(courseList.findByDate(dateInput));
+        }
+        if(input == 4) {
+            System.out.println(courseList.findAll().toString());
+        }
+        schoolStart();
     }
     public static void editStudent(){
     }

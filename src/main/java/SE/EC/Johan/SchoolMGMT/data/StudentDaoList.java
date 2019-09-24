@@ -41,7 +41,7 @@ public class StudentDaoList implements StudentDao {
 
     @Override
     public List<Student> findAll() {
-        return null;
+        return studentList;
     }
 
     @Override

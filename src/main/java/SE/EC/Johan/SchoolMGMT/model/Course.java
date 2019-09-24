@@ -27,7 +27,7 @@ public class Course {
 
     public void addStudent(Student student){
         if(!studentList.contains(student)){
-            System.out.println(student.getName() + " was added to the " + getCourseName());
+            System.out.println(student.getName() + " was added to " + getCourseName());
             studentList.add(student);
         }else{
             System.out.println(student.getName() + " is allready in " + getCourseName());
@@ -78,10 +78,10 @@ public class Course {
 
     @Override
     public String toString() {
-        return "[CourseId: " + courseId +
+        return "CourseId: " + courseId +
                 " - " + courseName +
                 "]\nStart date: " + startDate +
                 "\nDuration: " + weekDuration +
-                "\nStudents in course: " + studentList;
+                "\nStudents in course: " + studentList + "\n";
     }
 }

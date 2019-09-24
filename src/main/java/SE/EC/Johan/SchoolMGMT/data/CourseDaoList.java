@@ -21,7 +21,7 @@ public class CourseDaoList implements CourseDao {
 
     @Override
     public Course findById(int id) {
-        for (Course course:courseList) {
+        for (Course course : courseList) {
             if (course.getCourseId() == id){
                 return course;
             }
@@ -31,11 +31,20 @@ public class CourseDaoList implements CourseDao {
 
     @Override
     public List<Course> findByName(String name) {
+        for (Course course : courseList){
+            if (course.getCourseName().equals(name)){
+            }
+        }
         return null;
     }
 
     @Override
     public List<Course> findByDate(LocalDate date) {
+        for (Course course : courseList){
+            if (course.getStartDate().equals(date)){
+                return courseList;
+            }
+        }
         return null;
     }
 

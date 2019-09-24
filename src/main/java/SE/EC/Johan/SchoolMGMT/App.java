@@ -4,8 +4,9 @@ package SE.EC.Johan.SchoolMGMT;
  * Hello world!
  *
  */
-public class App 
-{
+public class App {
+
+
     public static void main( String[] args ) {
         /*
         Student test = new Student("Johan", "simman@rocketmail.com", "Lingonstigen 1");
@@ -13,7 +14,9 @@ public class App
 
         Course vetenskap = new Course("Vetenskap", LocalDate.of(2020,10,10), 8);
         Course matte = new Course("Matematik", LocalDate.of(2019, 10,20), 10);
+
 */
+
         SchoolStart.schoolStart();
 
 
