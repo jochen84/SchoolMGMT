@@ -31,6 +31,7 @@ public class CourseDaoList implements CourseDao {
 
     @Override
     public List<Course> findByName(String name) {
+        List<Course> c = new ArrayList<>();
         for (Course course : courseList){
             if (course.getCourseName().equals(name)){
             }
