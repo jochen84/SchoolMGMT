@@ -1,7 +1,7 @@
 package SE.EC.Johan.SchoolMGMT;
 
-import SE.EC.Johan.SchoolMGMT.data.CourseDaoList;
-import SE.EC.Johan.SchoolMGMT.data.StudentDaoList;
+import SE.EC.Johan.SchoolMGMT.data_access.CourseDaoList;
+import SE.EC.Johan.SchoolMGMT.data_access.StudentDaoList;
 import SE.EC.Johan.SchoolMGMT.model.Course;
 import SE.EC.Johan.SchoolMGMT.model.Student;
 
@@ -79,7 +79,7 @@ public class SchoolStart {
                     break;
                 }
                 if (input == 9) {
-                    createStudent();
+                    System.out.println("Quitting.");
                     break;
                 } else {
                     System.out.println("Invalid input, please make selection 1-9");
@@ -147,6 +147,28 @@ public class SchoolStart {
 
     }
     public static void findStudent(){
+        System.out.println("Find student by:\n1. ID\n2. Name\n3. Email\n4. Show all students");
+        int input = Integer.parseInt(scanner.nextLine());
+
+        if(input == 1) {
+            System.out.println("Enter student ID: ");
+            int idInput = Integer.parseInt(scanner.nextLine());
+            System.out.println(studentList.findById(idInput).toString());
+        }
+        if(input == 2) {
+            System.out.println("Enter student name: ");
+            String nameInput = scanner.nextLine();
+            System.out.println(studentList.findByName(nameInput).toString());
+        }
+        if (input == 3) {
+            System.out.println("Enter student email: ");
+            String emailInput = scanner.nextLine();
+            System.out.println(studentList.findByEmail(emailInput));
+        }
+        if(input == 4) {
+            System.out.println(studentList.findAll().toString());
+        }
+        schoolStart();
     }
     public static void findCourse(){
         System.out.println("Find course by:\n1. ID\n2. Name\n3. Startdate\n4. Show all courses");
@@ -174,7 +196,48 @@ public class SchoolStart {
         schoolStart();
     }
     public static void editStudent(){
+        System.out.println("All students:");
+        for (Student student : studentList.findAll()){
+            System.out.println("Student ID: "+student.getStudentId() + " - " + student.getName());
+        }
+        System.out.println("Enter ID of student you want to edit:");
+        int studentId = Integer.parseInt(scanner.nextLine());
+        System.out.println("Selected student: [" + studentList.findById(studentId).getStudentId() + " - " + studentList.findById(studentId).getName()
+                            + "]" + "\n1. Change name.\n2. Change email.\n3. Change adress.\n4. Remove student.");
+        int input = Integer.parseInt(scanner.nextLine());
+        if (input == 1){
+            System.out.println("Enter new name:");
+            String newName = scanner.nextLine();
+            studentList.findById(studentId).setName(newName);
+            System.out.println("Name changed to: " + studentList.findById(studentId).getName());
+        }
+        if (input == 2){
+            System.out.println("Enter new email:");
+            String newEmail = scanner.nextLine();
+            studentList.findById(studentId).setEmail(newEmail);
+            System.out.println("Email changed to: " + studentList.findById(studentId).getEmail());
+        }
+        if (input == 3){
+            System.out.println("Enter new adress:");
+            String newAdress = scanner.nextLine();
+            studentList.findById(studentId).setAdress(newAdress);
+            System.out.println("Adress changed to: " + studentList.findById(studentId).getAdress());
+        }
+        if (input == 4){
+            System.out.println("Are you sure you want to delete: [" + studentList.findById(studentId).getStudentId() + " - "
+                                + studentList.findById(studentId).getName() + "]\n1. Yes\n2. No");
+            int input2 = Integer.parseInt(scanner.nextLine());
+            if(input2 == 1){
+                System.out.println("[" + studentList.findById(studentId).getName() + "] is deleted.");
+                studentList.deleteStudent(studentList.findById(studentId));
+            }
+            if(input2 == 2){
+                System.out.println("Returning to main menu.");
+            }
+        }
+        schoolStart();
     }
+
     public static void editCourse(){
     }
 

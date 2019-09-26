@@ -1,4 +1,4 @@
-package SE.EC.Johan.SchoolMGMT.data;
+package SE.EC.Johan.SchoolMGMT.data_access;
 
 import SE.EC.Johan.SchoolMGMT.model.Student;
 
@@ -21,12 +21,23 @@ public class StudentDaoList implements StudentDao {
 
     @Override
     public Student findByEmail(String email) {
+        for(Student student : studentList){
+            if(student.getEmail().equals(email)){
+                return student;
+            }
+        }
         return null;
     }
 
     @Override
     public List<Student> findByName(String name) {
-        return null;
+        List<Student> c = new ArrayList<>();
+        for (Student student : studentList){
+            if(student.getName().equals(name)){
+                c.add(student);
+            }
+        }
+        return c;
     }
 
     @Override

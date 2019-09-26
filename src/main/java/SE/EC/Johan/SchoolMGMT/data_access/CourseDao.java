@@ -1,4 +1,4 @@
-package SE.EC.Johan.SchoolMGMT.data;
+package SE.EC.Johan.SchoolMGMT.data_access;
 
 import SE.EC.Johan.SchoolMGMT.model.Course;
 

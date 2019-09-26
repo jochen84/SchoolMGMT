@@ -1,4 +1,4 @@
-package SE.EC.Johan.SchoolMGMT.data;
+package SE.EC.Johan.SchoolMGMT.data_access;
 
 import SE.EC.Johan.SchoolMGMT.model.Course;
 
@@ -10,11 +10,13 @@ public class CourseDaoList implements CourseDao {
 
     private static List<Course> courseList = new ArrayList<>();
 
+    //TESTAD - OK
     @Override
     public Course saveCourse(Course course) {
         if(!courseList.contains(course)){
             courseList.add(course);
             System.out.println(course.getCourseName() + " was added.");
+            return course;
         }
         return null;
     }
@@ -34,19 +36,21 @@ public class CourseDaoList implements CourseDao {
         List<Course> c = new ArrayList<>();
         for (Course course : courseList){
             if (course.getCourseName().equals(name)){
+                c.add(course);
             }
         }
-        return null;
+        return c;
     }
 
     @Override
     public List<Course> findByDate(LocalDate date) {
+        List<Course> c = new ArrayList<>();
         for (Course course : courseList){
             if (course.getStartDate().equals(date)){
-                return courseList;
+                c.add(course);
             }
         }
-        return null;
+        return c;
     }
 
     @Override
