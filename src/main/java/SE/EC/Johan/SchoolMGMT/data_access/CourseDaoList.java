@@ -60,6 +60,10 @@ public class CourseDaoList implements CourseDao {
 
     @Override
     public boolean removeCourse(Course course) {
+        if(courseList.contains(course)){
+            courseList.remove(course);
+            return true;
+        }
         return false;
     }
 }

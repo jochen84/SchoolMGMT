@@ -52,6 +52,6 @@ public class Student {
         return "<StudentId: " + studentId +
                 " - Name: " + name +
                 " - Email: " + email  +
-                " - Adress: " + adress + ">";
+                " - Adress: " + adress + ">\n";
     }
 }
