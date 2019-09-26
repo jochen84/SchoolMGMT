@@ -84,4 +84,6 @@ public class Course {
                 "\nDuration: " + weekDuration +
                 "\nStudents in course: " + studentList + "\n";
     }
+
+
 }

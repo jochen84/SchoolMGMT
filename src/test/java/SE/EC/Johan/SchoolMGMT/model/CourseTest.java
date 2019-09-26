@@ -24,7 +24,7 @@ public class CourseTest {
     }
 
     @Test
-    public void register_student_test(){
+    public void add_student_test(){
         Student s1 = new Student("John Johansson", "jj@gmail.com", "Gyllenstjansvagen 7");
         course.addStudent(s1);
         int expectedValue = 1;
@@ -32,7 +32,7 @@ public class CourseTest {
     }
 
     @Test
-    public void unregister_student_test(){
+    public void remove_student_test(){
         course.removeStudent(student2);
         int expectedValue = 0;
         Assert.assertEquals(expectedValue, course.getStudentList().size());

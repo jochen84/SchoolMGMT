@@ -56,7 +56,6 @@ public class SchoolStart {
                     break;
                 }
                 if (input == 3) {
-                    System.out.println();
                     addToCourse();
                     break;
                 }
@@ -109,7 +108,7 @@ public class SchoolStart {
     public static void createCourse(){
         System.out.println("Enter course name: ");
         String courseName = scanner.nextLine();
-        System.out.println("Enter start date (YYYY-MM-DD) ");
+        System.out.println("Enter start date: (YYYY-MM-DD) ");
         LocalDate startDate = LocalDate.parse(scanner.nextLine());
         System.out.println("Enter number of weeks: ");
         int duration = Integer.parseInt(scanner.nextLine());
