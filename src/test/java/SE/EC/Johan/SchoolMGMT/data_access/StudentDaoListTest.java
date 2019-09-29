@@ -67,7 +67,6 @@ public class StudentDaoListTest {
         testObject.saveStudent(student1);
         System.out.println(testObject.findAll().toString());
         Student expectedStudent = student1;
-        //Student actualStudent = testObject.findById(1);
         Student actualStudent = testObject.findById(student1.getStudentId());
         Assert.assertEquals(expectedStudent, actualStudent);
     }

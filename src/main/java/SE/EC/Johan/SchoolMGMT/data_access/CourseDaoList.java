@@ -14,6 +14,12 @@ public class CourseDaoList implements CourseDao {
     @Override
     public Course saveCourse(Course course) {
         if(!courseList.contains(course)){
+            for (Course courses : courseList){
+                if(courses.getCourseName().equals(course.getCourseName())){
+                    System.out.println("Course name is allready in use.");
+                    return null;
+                }
+            }
             courseList.add(course);
             System.out.println(course.getCourseName() + " was added.");
             return course;
